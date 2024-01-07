@@ -1,0 +1,61 @@
+.BOX{
+   
+  }
+  
+  .inputStartPage {
+    width: 450px;
+    margin: 10px 0px 5px 0px;
+    padding: 5px 10px 5px 10px;
+    box-sizing: border-box;
+  }
+  
+  .inputStartPageSelected{
+  
+  }
+  
+  .dropdownItemSearch{
+    padding: 10px 10px 10px 10px;
+    display: flex;
+  }
+  
+  .dropdownItemSearch:hover{
+    color: orange;
+    background-color: #757981;
+  }
+  
+  .dropdownFilmSearch {
+    display: flex;
+    border: #282c34 solid;
+    width: 450px;
+    flex-direction: column;
+    flex-direction: column;
+    max-height: 300px;
+    overflow-y: auto;
+    box-sizing: border-box;
+    position: absolute;
+    z-index: 1;
+    background: white;
+  }
+  
+  .dropdownItemSearch img {
+    object-fit: contain;
+    width: 50px;
+    margin-right: 10px;
+    border-radius: 10%;
+  }
+  
+  
+  
+  .dropdownItemSearchText{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .filaNombrePelicula {
+    font-size: 20px;
+  }
+  
+  .filaFechaPelicula {
+    font-size: 15px;
+  }

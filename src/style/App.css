@@ -1,0 +1,35 @@
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.centeredDiv {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  min-height: 400px;
+  min-width: 800px;
+  text-align: center;
+}
+
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+
+.botonesStart {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  margin: 30px;
+}
