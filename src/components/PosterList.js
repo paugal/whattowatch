@@ -4,7 +4,7 @@ import axios from 'axios';
 import PosterList from "./PosterList.js"
 
 
-function SelectTree() {
+function SelectThree() {
 
   return (
     <div>
@@ -13,4 +13,4 @@ function SelectTree() {
   );
 }
 
-export default SelectTree;
+export default SelectThree;

@@ -1,8 +1,10 @@
 import '../style/SearchBar.css';
 import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { addMovie, removeMovie } from '../features/movies/movieSlide';
 import axios from 'axios';
 
-const SearchBar = () => {
+const SearchBar = ({updateSelectedMovie, index}) => {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
@@ -10,6 +12,17 @@ const SearchBar = () => {
 
   //para el tamaño original cambiamos w200 por "original"
   const imgUrlSmall = "https://image.tmdb.org/t/p/w200/"
+
+  const movies = useSelector((state) => state.movies.movies);
+  const dispatch = useDispatch();
+
+  const handleAddMovie = (movie) => {
+    dispatch(addMovie(movie));
+  };
+
+  const handleRemoveMovie = (movieId) => {
+    dispatch(removeMovie(movieId));
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,7 +53,11 @@ const SearchBar = () => {
     });
     setQuery(selectedMovie.title); // Establecer el título de la película en el input
     setResults([]); // Ocultar la lista de resultados
-    setShowList(false)
+    setShowList(false);
+
+    if (updateSelectedMovie) {
+      updateSelectedMovie(selectedMovie.id);
+    }
   };
 
   const handleInputChange = (e) => {
