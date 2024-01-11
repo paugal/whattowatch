@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addMovie, removeMovie } from '../features/movies/movieSlide';
 import axios from 'axios';
+import defaultPoster from '../resources/defaultposter.png'
 
 const SearchBar = ({updateSelectedMovie, index}) => {
   const [query, setQuery] = useState('');
@@ -71,9 +72,11 @@ const SearchBar = ({updateSelectedMovie, index}) => {
   };
 
   function onlyYear(date){
-    date = "(" + date.slice(0, 4) + ")";
-
-    return date
+    if (date) {
+      return "(" + date.slice(0, 4) + ")";
+    } else {
+      return "( Año Desconocido )";
+    }
   }
 
   return (
@@ -93,7 +96,10 @@ const SearchBar = ({updateSelectedMovie, index}) => {
               key={movie.id}
               onClick={() => handleSelection(movie)}
             >
-              <img src={imgUrlSmall + movie.poster_path} alt={movie.title}/>
+              <img
+                src={movie.poster_path ? imgUrlSmall + movie.poster_path : defaultPoster}
+                alt={movie.title}
+              />
               <div className="dropdownItemSearchText">
                 <div className='filaNombrePelicula'>
                   {movie.title} 

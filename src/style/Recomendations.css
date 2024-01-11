@@ -1,0 +1,4 @@
+.recomendationBox{
+    display: flex;
+    flex-wrap: wrap;
+}
