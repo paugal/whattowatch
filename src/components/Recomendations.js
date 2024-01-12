@@ -94,7 +94,7 @@ function Recomendations({ selectedMovieIds }) {
 
   return (
     <div className="contentContainer" id='home'>
-        <h1>Peliculas parecidas que tal vez te gusten</h1>
+        <h1 className='Titulo'>Peliculas parecidas que tal vez te gusten</h1>
         <div className='botonesStart'>
         </div>
         <div className='recomendationBox'>

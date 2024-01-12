@@ -1,0 +1,8 @@
+@import 'colores.css';
+
+.BotonBuscar{
+    width: 100px;
+    height: 40px;
+    font-weight: 900 !important;
+    background-color: var(--coPri) ;
+}
