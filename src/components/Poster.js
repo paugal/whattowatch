@@ -7,7 +7,7 @@ import axios from 'axios';
 
 function Poster({ id, name }) {
   const [movie, setMovie] = useState([]);
-  const imgUrlM = "https://image.tmdb.org/t/p/w300/";
+  const imgUrlM = "https://image.tmdb.org/t/p/w400/";
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -49,7 +49,7 @@ function Poster({ id, name }) {
           alt={movie.title}
         />
       )}
-      <div>{name}</div>
+      <div className="border-overlay"></div>
     </iv>
   );
 }

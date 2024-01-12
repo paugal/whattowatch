@@ -1,4 +1,34 @@
-.posterContainer img{
-    height: 200px;
-    background-color: aliceblue ;
+@import 'colores.css';
+
+.posterContainer{
+    position: relative;
+    display: inline-block;
+    height: 231px;
+    width: 156px;
+    margin: 6px;
+    border-radius: 5%;
+    transition: border .1s linear;
+}
+
+.posterContainer:hover .border-overlay {
+    border-width: 5px; /* Ajusta el ancho del borde al pasar el ratón por encima */
+  }
+
+.posterContainer img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+
+.border-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: border .1s linear;
+    border: 2px solid var(--coPri); /* Ajusta el ancho y el color del borde según tus necesidades */
+    box-sizing: border-box; /* Asegura que el ancho del borde se incluya en el tamaño total del elemento */
 }

@@ -102,17 +102,6 @@ function Recomendations({ selectedMovieIds }) {
             <Poster key={movie.id} id={movie.id} name={movie.title} />
           ))}
         </div>
-        
-        <div>
-          <h2>Géneros:</h2>
-          <ul>
-            {allGenres.map((genre, index) => (
-              <li key={index} style={{ fontWeight: commonGenres.includes(genre) ? 'bold' : 'normal' }}>
-                {genre}
-              </li>
-            ))}
-          </ul>
-        </div>
     </div>
   );
 }

@@ -2,6 +2,7 @@ import './style/App.css';
 import SelectThree from './components/SelectThree';
 import Recomendations from './components/Recomendations'
 import React, { useState } from 'react';
+import TopVar from './components/TopVar';
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
 
   return (
     <div className="App">
+      <TopVar/>
       <div className="centeredDiv">
         <SelectThree updateSelectedMovies={updateSelectedMovies}/>
         <Recomendations selectedMovieIds={selectedMovies}/>
