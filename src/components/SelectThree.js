@@ -1,6 +1,8 @@
 import '../style/App.css';
+import '../style/SelectThree.css';
 import SearchBar from './SearchBar';
 import React, { useState, useEffect } from 'react';
+import Button from '@mui/material/Button';
 
 function SelectThree({ updateSelectedMovies }) {
 
@@ -22,8 +24,8 @@ function SelectThree({ updateSelectedMovies }) {
 
   return (
 <div className="contentContainer" id='home'>
-      <h1>What To Watch</h1>
-
+      <h1>Dinos que te gusta y te recomendaremos peliculas!</h1>
+      
       <SearchBar updateSelectedMovie={(movie) => {
         const newSelectedMovies = [...selectedMovies];
         newSelectedMovies[0] = movie;
@@ -43,8 +45,8 @@ function SelectThree({ updateSelectedMovies }) {
       }} />
 
       <div className='botonesStart'>
-        <button onClick={handleSearch}>Buscar</button>
-        <button onClick={handleReset}>Resetear</button>
+        <Button className='BotonBuscar' variant="contained" onClick={handleSearch}>Buscar</Button>
+        <Button className='BotonBuscar' variant="contained" onClick={handleReset}>Resetear</Button>
       </div>
     </div>
   );

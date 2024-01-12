@@ -4,14 +4,10 @@
   
 .inputStartPage {
   width: 450px;
-  margin: 10px 0px 5px 0px;
-  padding: 5px 10px 5px 10px;
-  box-sizing: border-box;
+  margin: 10px 0px 5px 0px !important;
+  color: aliceblue !important;
 }
 
-.inputStartPageSelected{
-
-}
 
 .dropdownItemSearch{
   padding: 10px 10px 10px 10px;
