@@ -5,6 +5,7 @@ import Recomendations from './components/Recomendations'
 import React, { useState } from 'react';
 import TopVar from './components/TopVar';
 import { ThemeProvider } from '@mui/material';
+import DescriptionMovie from './components/DescriptionMovie';
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
       <div className="App">
         <TopVar/>
         <div className="centeredDiv">
+          <DescriptionMovie></DescriptionMovie>
           <SelectThree updateSelectedMovies={updateSelectedMovies}/>
           <Recomendations selectedMovieIds={selectedMovies}/>
         </div>

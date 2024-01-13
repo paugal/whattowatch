@@ -1,8 +1,8 @@
 @import 'colores.css';
 
 .BotonBuscar{
-    width: 100px;
+    width: 150px;
     height: 40px;
     font-weight: 900 !important;
-    background-color: var(--coPri) ;
+    background-color: whitesmoke ;
 }
