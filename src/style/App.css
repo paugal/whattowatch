@@ -16,8 +16,8 @@ h1{
 }
 
 .centeredDiv {
-  background-color: var(--coBack);
   padding: 20px;
+  padding-top: 0px;
   border-radius: 10px;
   min-height: 400px;
   min-width: 800px;

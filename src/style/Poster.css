@@ -8,27 +8,112 @@
     margin: 6px;
     border-radius: 5%;
     transition: border .1s linear;
+    border-radius: 5px;
 }
 
 .posterContainer:hover .border-overlay {
-    border-width: 5px; /* Ajusta el ancho del borde al pasar el ratón por encima */
+  box-shadow: 0 0 0 2px var(--coPri); /* Ajusta el ancho del borde al pasar el cursor */
+  border: var(--coPri);
   }
+
 
 .posterContainer img {
     display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 5px;
   }
 
 
-.border-overlay {
+  .border-overlay {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    transition: border .1s linear;
-    border: 2px solid var(--coPri); /* Ajusta el ancho y el color del borde según tus necesidades */
-    box-sizing: border-box; /* Asegura que el ancho del borde se incluya en el tamaño total del elemento */
-}
+    transition: box-shadow .1s linear;
+    box-sizing: border-box;
+    border: 2px solid antiquewhite;
+    border-radius: 5px; /* Ajusta este valor según sea necesario */
+    background-clip: padding-box, /* Borde interior */
+                     content-box; /* Borde exterior */
+  }
+
+
+
+  .MoreInfo{
+    display: none;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all .3s linear;
+  }
+
+  .ButtonsPoster{
+    width: 100%;
+    display: flex;
+    height: 30px;
+    flex-wrap: nowrap;
+    justify-content: center;
+  }
+
+
+  .NotaPoster{
+    will-change: transform;
+    transition: all .3s linear;
+    padding: 5px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    z-index: 5;
+    text-align: center;
+    overflow: hidden;
+    color: var(--coText)
+  }
+
+  .MoreInfo:hover::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), transparent, transparent, rgba(0, 0, 0, 1));
+    z-index: 1;
+    border-radius: 5px;
+  }
+  .ButtonsBox{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .ButtonsPoster{
+    will-change: transform;
+    transition: all .3s linear;
+    z-index: 5;
+    background-color: rgba(0, 0, 0, 0.7);
+    margin-top: 3px;
+    padding: 5px;
+    width: 90px;
+    display: flex;
+    height: 30px;
+    width: 90px;
+    z-index: 5;
+    text-align: center;
+    overflow: hidden;
+    border-radius: 5px;
+  }
+
+  .ButtonsPoster IconButton{
+   
+  }
+
+  .border-overlay:hover .MoreInfo {
+    display: block;
+  }

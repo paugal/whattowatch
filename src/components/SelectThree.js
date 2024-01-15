@@ -46,7 +46,6 @@ function SelectThree({ updateSelectedMovies }) {
 
       <div className='botonesStart'>
         <Button className='BotonBuscar' variant="contained" onClick={handleSearch}>Buscar</Button>
-        <Button className='BotonBuscar' variant="contained" onClick={handleReset}>Resetear</Button>
       </div>
     </div>
   );

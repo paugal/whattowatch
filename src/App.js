@@ -1,10 +1,9 @@
 import './style/App.css';
-import theme from './theme'
 import SelectThree from './components/SelectThree';
 import Recomendations from './components/Recomendations'
 import React, { useState } from 'react';
 import TopVar from './components/TopVar';
-import { ThemeProvider } from '@mui/material';
+import DescriptionMovie from './components/DescriptionMovie';
 
 function App() {
 
@@ -15,15 +14,14 @@ function App() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
       <div className="App">
         <TopVar/>
         <div className="centeredDiv">
+          <DescriptionMovie/>
           <SelectThree updateSelectedMovies={updateSelectedMovies}/>
           <Recomendations selectedMovieIds={selectedMovies}/>
         </div>
       </div>
-    </ThemeProvider>
   );
 }
 export default App;

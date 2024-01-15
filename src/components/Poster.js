@@ -3,6 +3,11 @@ import '../style/Poster.css';
 import React, { useState, useEffect} from 'react';
 import defaultPoster from '../resources/defaultposter.png'
 import axios from 'axios';
+import { Button } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
+import WatchLaterIcon from '@mui/icons-material/WatchLater';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 
 
 function Poster({ id, name }) {
@@ -39,7 +44,6 @@ function Poster({ id, name }) {
     console.log('UseEffect with movie:', movie);
   }, [movie]);
 
-
   return (
     <iv className="posterContainer" key={id}>
       
@@ -49,7 +53,25 @@ function Poster({ id, name }) {
           alt={movie.title}
         />
       )}
-      <div className="border-overlay"></div>
+      <div className="border-overlay">
+        <div className='MoreInfo'>
+        <div className='ButtonsBox'>
+          <div className='ButtonsPoster'>
+            <IconButton >
+              <WatchLaterIcon sx={{ fontSize: 15 }}/>
+            </IconButton>
+            <IconButton>
+              <VisibilityIcon sx={{ fontSize: 15 }}/>
+            </IconButton>
+            <IconButton>
+              <ThumbUpIcon sx={{ fontSize: 15 }}/>
+            </IconButton>
+          </div>
+          
+        </div>
+        <div className='NotaPoster'> {Math.round(movie.vote_average* 10) / 10}</div>
+        </div>
+      </div>
     </iv>
   );
 }

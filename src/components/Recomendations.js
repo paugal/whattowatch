@@ -95,8 +95,6 @@ function Recomendations({ selectedMovieIds }) {
   return (
     <div className="contentContainer" id='home'>
         <h1 className='Titulo'>Peliculas parecidas que tal vez te gusten</h1>
-        <div className='botonesStart'>
-        </div>
         <div className='recomendationBox'>
           {recomFinalList.map((movie) => (
             <Poster key={movie.id} id={movie.id} name={movie.title} />
