@@ -62,9 +62,10 @@ function Recomendations({ selectedMovieIds }) {
 
   useEffect(() => {
     const finalList = [];
-
+    
     for (const recommendationsArray of recomendations) {
       for (const recommendationItem of recommendationsArray.results) {
+        console.log('RecoItem' + recommendationItem);
         finalList.push(recommendationItem);
       }
     }

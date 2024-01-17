@@ -7,10 +7,11 @@ import defaultPoster from '../resources/defaultposter.png'
 import MetacriticIcon from '../resources/MetacriticIcon.png'
 import Rotten_Tomatoes from '../resources/Rotten_Tomatoes.png'
 import { useGlobalConfig } from './GlobalConfigContext'
+import { useParams } from 'react-router-dom';
 
 
 function DescriptionMovie(){
-
+    const { id } = useParams();
     const [movieTMDB, setmovieTMDB] = useState([]);
     const [movieOMDB, setmovieOMDB] = useState([]);
     const [keyWords, setKeyWords] = useState([]);
@@ -20,7 +21,7 @@ function DescriptionMovie(){
     const fetchMovies = async () => {
       try {
         const apiKey = '6bce84c9599883d5e4033758c40ab14f';
-        const response = await axios.get(`https://api.themoviedb.org/3/movie/tt1160419?language=es&api_key=${apiKey}`);
+        const response = await axios.get(`https://api.themoviedb.org/3/movie/${id}?language=es&api_key=${apiKey}`);
         console.log('RESPONSE:');
   
         if (response.data) {
@@ -35,7 +36,7 @@ function DescriptionMovie(){
 
       try {
         const apiKey = 'fb8928eb';
-        const response = await axios.get(`https://www.omdbapi.com/?i=tt1160419&plot=full&apikey=${apiKey}`);
+        const response = await axios.get(`https://www.omdbapi.com/?i=${id}&plot=full&apikey=${apiKey}`);
         console.log('RESPONSE:');
   
         if (response.data) {
@@ -50,7 +51,7 @@ function DescriptionMovie(){
 
       try {
         const apiKey = '6bce84c9599883d5e4033758c40ab14f';
-        const response = await axios.get(`https://api.themoviedb.org/3/movie/tt1160419/keywords&apikey=${apiKey}`);
+        const response = await axios.get(`https://api.themoviedb.org/3/movie/${id}/keywords&apikey=${apiKey}`);
         console.log('RESPONSE:');
   
         if (response.data) {
