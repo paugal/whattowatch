@@ -4,7 +4,7 @@ import Recomendations from './components/Recomendations'
 import React, { useState } from 'react';
 import TopVar from './components/TopVar';
 import DescriptionMovie from './components/DescriptionMovie';
-import MyButton from './components/MyButtonLink';
+import { MovieProvider } from './components/contextos/MovieContext';
 import {
   BrowserRouter as Router, Routes,
   Route
@@ -24,12 +24,13 @@ function App() {
         <TopVar/>
         <div className="centeredDiv">
           <Router>
-              
-              <Routes>
-                  <Route path="/" element={ <SelectThree updateSelectedMovies={updateSelectedMovies}/>} />
-                  <Route path="/film/:id"
-                      element={ <DescriptionMovie/>} />
-              </Routes>
+              <MovieProvider>
+                <Routes>
+                    <Route path="/" element={ <SelectThree updateSelectedMovies={updateSelectedMovies}/>} />
+                    <Route path="/film/:id"
+                        element={ <DescriptionMovie/>} />
+                </Routes>
+              </MovieProvider>
           </Router>
         </div>
       </div>

@@ -2,42 +2,31 @@ import '../style/App.css';
 import '../style/Recomendations.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Poster from "./Poster.js"
-
+import Poster from "./Poster.js";
+import { useMovieContext } from './contextos/MovieContext';
 
 function Recomendations({ selectedMovieIds }) {
-  
-  const [selectedMovies, setselectedMovies] = useState([]);
-  const [commonGenres, setCommonGenres] = useState([]);
-  const [allGenres, setAllGenres] = useState([]);
-  const [recomendations, setRecomendations] = useState([]);
+  const { updateScrollPosition } = useMovieContext();
   const [recomFinalList, setRecomFinalList] = useState([]);
 
   useEffect(() => {
-    const fetchMovies = async () => {
-      try {
-        const apiKey = '6bce84c9599883d5e4033758c40ab14f';  // Reemplaza con tu propia clave de API de TMDb
-        const promises = selectedMovieIds.map(async (movieId) => {
-          const response = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}&language=es&?api_key=${apiKey}`);
-          return response.data;
-        });
+    console.log('Fetching recommendations...');
+    const savedScrollPosition = sessionStorage.getItem('scrollPosition');
+    console.log('Saved Scroll Position:', savedScrollPosition);
 
-        const movies = await Promise.all(promises);
-        setselectedMovies(movies);
+    if (savedScrollPosition) {
+      console.log('Restoring scroll position:', savedScrollPosition);
 
-        console.log('selectedMovies:', selectedMovies);
-      } catch (error) {
-        console.error('Error al obtener datos de la API:', error);
-      }
-    };
-
-    // Verifica que haya IDs de películas antes de hacer la llamada a la API
-    if (selectedMovieIds && selectedMovieIds.length > 0) {
-      fetchMovies();
+      // Esperar 100ms antes de intentar desplazar la página
+      setTimeout(() => {
+        window.scrollTo(0, parseInt(savedScrollPosition, 10));
+      }, 100);
     }
-  }, [selectedMovieIds]);
+  }, []);
 
   useEffect(() => {
+    console.log('Selected Movie IDs changed:', selectedMovieIds);
+
     const fetchRecomentdations = async () => {
       try {
         const apiKey = '6bce84c9599883d5e4033758c40ab14f';
@@ -47,8 +36,14 @@ function Recomendations({ selectedMovieIds }) {
         });
 
         const recomendations = await Promise.all(promises);
-        setRecomendations(recomendations);
-        console.log('Recomended Movies:', recomendations);
+        const finalList = recomendations.flatMap(array => array.results);
+        console.log('Fetched Recommendations:', finalList);
+        setRecomFinalList(finalList);
+        
+        // Save scroll position after loading recommendations
+        const scrollY = window.scrollY.toString();
+        console.log('Saving scroll position after loading recommendations:', scrollY);
+        sessionStorage.setItem('scrollPosition', scrollY);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -58,49 +53,28 @@ function Recomendations({ selectedMovieIds }) {
       fetchRecomentdations();
     }
 
+    const handleScroll = () => {
+      const scrollY = window.scrollY.toString();
+      console.log('Handling scroll. Saving position:', scrollY);
+      sessionStorage.setItem('scrollPosition', scrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      console.log('Removing scroll event listener.');
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, [selectedMovieIds]);
-
-  useEffect(() => {
-    const finalList = [];
-    
-    for (const recommendationsArray of recomendations) {
-      for (const recommendationItem of recommendationsArray.results) {
-        console.log('RecoItem' + recommendationItem);
-        finalList.push(recommendationItem);
-      }
-    }
-
-    setRecomFinalList(finalList);
-  }, [recomendations]);
-
-  useEffect(() => {
-    // Extrae todos los géneros de las películas
-    const genresArray = selectedMovies.flatMap(movie => movie.genres.map(genre => genre.name));
-
-    // Cuenta la frecuencia de cada género
-    const genreCounts = genresArray.reduce((acc, genre) => {
-      acc[genre] = (acc[genre] || 0) + 1;
-      return acc;
-    }, {});
-
-    // Ordena los géneros según la frecuencia
-    const sortedGenres = Object.keys(genreCounts).sort((a, b) => genreCounts[b] - genreCounts[a]);
-
-    setAllGenres(sortedGenres);
-
-    // Filtra los géneros que aparecen más de una vez
-    const commonGenresArray = sortedGenres.filter(genre => genreCounts[genre] > 1);
-    setCommonGenres(commonGenresArray);
-  }, [selectedMovies]);
 
   return (
     <div className="contentContainer" id='home'>
-        <h1 className='Titulo'>Peliculas parecidas que tal vez te gusten</h1>
-        <div className='recomendationBox'>
-          {recomFinalList.map((movie) => (
-            <Poster key={movie.id} id={movie.id} name={movie.title} />
-          ))}
-        </div>
+      <h1 className='Titulo'>Películulas parecidas que tal vez te gusten</h1>
+      <div className='recomendationBox'>
+        {recomFinalList.map((movie) => (
+          <Poster key={movie.id} id={movie.id} name={movie.title} />
+        ))}
+      </div>
     </div>
   );
 }
