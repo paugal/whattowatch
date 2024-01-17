@@ -70,3 +70,8 @@ body {
   font-weight: 800;
   font-size: 35px;
 }
+
+.Logo a{
+  color: antiquewhite;
+  text-decoration: none;
+}

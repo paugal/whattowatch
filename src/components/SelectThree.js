@@ -1,52 +1,59 @@
-import '../style/App.css';
-import '../style/SelectThree.css';
-import SearchBar from './SearchBar';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Button from '@mui/material/Button';
+import SearchBar from './SearchBar';
+import Recomendations from './Recomendations';
+import '../style/SelectThree.css';
+import '../style/Recomendations.css';
+import '../style/Boton.css';
 
 function SelectThree({ updateSelectedMovies }) {
-
-  const [selectedMovies, setSelectedMovies] = useState(Array(3).fill(''));
+  const [selectedMoviesId, setSelectedMoviesId] = useState([]);
+  const [recomendationsVisible, setRecomendationsVisible] = useState(false);
+  
 
   const handleSearch = () => {
-    // Filtrar solo las películas no vacías
-    const nonEmptyTitles = selectedMovies
-      .filter(id => typeof id === 'number');
-    
+    const nonEmptyTitles = selectedMoviesId.filter(id => typeof id === 'number');
     console.log('Títulos seleccionados:', nonEmptyTitles);
     updateSelectedMovies(nonEmptyTitles);
+    setRecomendationsVisible(true);
   };
 
   const handleReset = () => {
-    // Lógica para resetear o reiniciar el estado si es necesario
-    setSelectedMovies(Array(3).fill(''));
+    setSelectedMoviesId([]);
+    setRecomendationsVisible(false);
+  };
+
+  const handleUpdateMovie = (index, movie) => {
+    setSelectedMoviesId(prevMovies => {
+      const newMovies = [...prevMovies];
+      newMovies[index] = movie;
+      return newMovies;
+    });
+    setRecomendationsVisible(false);
   };
 
   return (
-<div className="contentContainer" id='home'>
-      <h1>Dinos que te gusta y te recomendaremos peliculas!</h1>
-      
-      <SearchBar updateSelectedMovie={(movie) => {
-        const newSelectedMovies = [...selectedMovies];
-        newSelectedMovies[0] = movie;
-        setSelectedMovies(newSelectedMovies);
-      }} />
-
-      <SearchBar updateSelectedMovie={(movie) => {
-        const newSelectedMovies = [...selectedMovies];
-        newSelectedMovies[1] = movie;
-        setSelectedMovies(newSelectedMovies);
-      }} />
-
-      <SearchBar updateSelectedMovie={(movie) => {
-        const newSelectedMovies = [...selectedMovies];
-        newSelectedMovies[2] = movie;
-        setSelectedMovies(newSelectedMovies);
-      }} />
-
-      <div className='botonesStart'>
-        <Button className='BotonBuscar' variant="contained" onClick={handleSearch}>Buscar</Button>
+    <div>
+      <div className="contentContainer" id="home">
+        <h1>Dinos qué te gusta y te recomendaremos películas</h1>
+        {[0, 1, 2].map(index => (
+          <SearchBar
+            key={index}
+            updateSelectedMovie={movie => handleUpdateMovie(index, movie)}
+          />
+        ))}
+        <div className="botonesStart">
+          <button className="Boton" variant="contained" onClick={handleSearch}>
+            Buscar
+          </button>
+          <button className="Boton" variant="contained" onClick={handleReset}>
+            Reset
+          </button>
+        </div>
       </div>
+      {recomendationsVisible && selectedMoviesId.length > 0 && (
+        <Recomendations selectedMovieIds={selectedMoviesId} />
+      )}
     </div>
   );
 }

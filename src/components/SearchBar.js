@@ -1,10 +1,11 @@
 import '../style/SearchBar.css';
+import '../style/Buscador.css'
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addMovie, removeMovie } from '../features/movies/movieSlide';
 import axios from 'axios';
 import defaultPoster from '../resources/defaultposter.png'
-import TextField from '@mui/material/TextField';
+
 
 const SearchBar = ({updateSelectedMovie, index}) => {
   const [query, setQuery] = useState('');
@@ -82,15 +83,11 @@ const SearchBar = ({updateSelectedMovie, index}) => {
 
   return (
     <div className='BOX'>
-      
-      <TextField id="outlined-basic" label="Buscar Pelicula" variant="outlined"
-        className='inputStartPage'
+      <input className='Buscador' placeholder='Introduce tu película...' 
         type="text"
         value={query}
-        onChange={handleInputChange}
-        color='primary'
-        
-      />
+        onChange={handleInputChange}>
+      </input>
       {showList && results.length > 0 && (
         <div className="dropdownFilmSearch">
           {results.map((movie) => (

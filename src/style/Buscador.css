@@ -1,0 +1,25 @@
+.Buscador{
+    background-color: var(--coSecond);
+    width: 450px;
+    height: 55px;
+    border-radius: 5px;
+    color: aliceblue;
+    margin-bottom: 15px;
+}
+
+input {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 5px;
+    outline: none;
+    box-sizing: border-box;
+    font-size: 17px;
+  }
+
+  input:focus {
+    border-color: var(--coPri);
+    box-shadow: 0 0 5px rgba(255, 87, 87, 0.5);
+  }

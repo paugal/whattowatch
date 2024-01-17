@@ -8,6 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import WatchLaterIcon from '@mui/icons-material/WatchLater';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import MyButtonLink from './MyButtonLink';
 
 
 function Poster({ id, name }) {
@@ -45,8 +46,8 @@ function Poster({ id, name }) {
   }, [movie]);
 
   return (
-    <iv className="posterContainer" key={id}>
-      
+    <div className="posterContainer" key={id}>
+    <a href={`/film/${movie.imdb_id}`}>
       {movie && (
         <img
           src={movie.poster_path ? imgUrlM + movie.poster_path : defaultPoster}
@@ -55,24 +56,24 @@ function Poster({ id, name }) {
       )}
       <div className="border-overlay">
         <div className='MoreInfo'>
-        <div className='ButtonsBox'>
-          <div className='ButtonsPoster'>
-            <IconButton >
-              <WatchLaterIcon sx={{ fontSize: 15 }}/>
-            </IconButton>
-            <IconButton>
-              <VisibilityIcon sx={{ fontSize: 15 }}/>
-            </IconButton>
-            <IconButton>
-              <ThumbUpIcon sx={{ fontSize: 15 }}/>
-            </IconButton>
+          <div className='ButtonsBox'>
+            <div className='ButtonsPoster'>
+              <IconButton>
+                <WatchLaterIcon sx={{ fontSize: 15 }}/>
+              </IconButton>
+              <IconButton>
+                <VisibilityIcon sx={{ fontSize: 15 }}/>
+              </IconButton>
+              <IconButton>
+                <ThumbUpIcon sx={{ fontSize: 15 }}/>
+              </IconButton>
+            </div>
           </div>
-          
-        </div>
-        <div className='NotaPoster'> {Math.round(movie.vote_average* 10) / 10}</div>
+          <div className='NotaPoster'> {Math.round(movie.vote_average* 10) / 10}</div>
         </div>
       </div>
-    </iv>
+    </a>
+  </div>
   );
 }
 
