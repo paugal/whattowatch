@@ -15,6 +15,7 @@ function DescriptionMovie(){
     const [movieTMDB, setmovieTMDB] = useState([]);
     const [movieOMDB, setmovieOMDB] = useState([]);
     const [keyWords, setKeyWords] = useState([]);
+    const [castList, setCastList] = useState([]);
     const imgUrlM = "https://image.tmdb.org/t/p/w400/";
 
   useEffect(() => {
@@ -22,7 +23,6 @@ function DescriptionMovie(){
       try {
         const apiKey = '6bce84c9599883d5e4033758c40ab14f';
         const response = await axios.get(`https://api.themoviedb.org/3/movie/${id}?language=es&api_key=${apiKey}`);
-        console.log('RESPONSE:');
   
         if (response.data) {
             setmovieTMDB(response.data);
@@ -37,7 +37,6 @@ function DescriptionMovie(){
       try {
         const apiKey = 'fb8928eb';
         const response = await axios.get(`https://www.omdbapi.com/?i=${id}&plot=full&apikey=${apiKey}`);
-        console.log('RESPONSE:');
   
         if (response.data) {
             setmovieOMDB(response.data);
@@ -52,10 +51,23 @@ function DescriptionMovie(){
       try {
         const apiKey = '6bce84c9599883d5e4033758c40ab14f';
         const response = await axios.get(`https://api.themoviedb.org/3/movie/${id}/keywords&apikey=${apiKey}`);
-        console.log('RESPONSE:');
   
         if (response.data) {
             setKeyWords(response.data);
+        } else {
+            console.error('Error: Datos de película no encontrados.');
+        }
+      } catch (error) {
+        console.error('Error al obtener datos de la API:', error);
+      }
+
+      try {
+        const apiKey = '6bce84c9599883d5e4033758c40ab14f';
+        const response = await axios.get(`https://api.themoviedb.org/3/movie/${id}/credits?language=es&api_key=${apiKey}`);
+  
+        if (response.data.cast) {
+            setCastList(response.data);
+            console.log('Cast:', response.data.cast);
         } else {
             console.error('Error: Datos de película no encontrados.');
         }
@@ -133,6 +145,17 @@ function DescriptionMovie(){
                     <p> Duracion: {movieOMDB.Runtime}</p>
                     <p>Escrita por: {movieOMDB.Writer}</p>
                     </div>
+                </div>
+
+                <div className='CastBox'>
+                  <hi>Reparto</hi>
+                  <div className='CastList'>
+                    <ul>
+                      {Array.isArray(castList) && castList.map((actor) => (
+                          <li key={actor.id}>{actor.name} - {actor.character}</li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
             </div>
         </div>
