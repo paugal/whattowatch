@@ -122,3 +122,51 @@
   justify-content: center;
   height: 55px;
 }
+.CastTitle{
+  text-align: left;
+  font-size: 20px;
+  margin: 10px 0px 10px 0px;
+}
+.CastList{
+  display: flex;
+  width: 550px;
+  overflow: scroll;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding-bottom: 10px;
+}
+
+.ActorBox img{
+  height: 180px;
+  border-radius: 5px 5px 0px 0px;
+  margin-bottom: 5px;
+}
+
+.ActorBox{
+  margin-right: 20px;
+  background-color: var(--coSecond);
+  border-radius: 5px;
+  height: 260px;
+  text-align: center;
+}
+
+.ActorName{
+  font-weight: 800;
+}
+
+.ThemeBox{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.ThemItem{
+  color: antiquewhite;
+  background-color: var(--coSecond);
+  margin: 5px;
+  padding: 7px;
+  border-radius: 5px;
+}

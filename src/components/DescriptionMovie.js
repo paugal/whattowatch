@@ -17,6 +17,7 @@ function DescriptionMovie(){
     const [keyWords, setKeyWords] = useState([]);
     const [castList, setCastList] = useState([]);
     const imgUrlM = "https://image.tmdb.org/t/p/w400/";
+    const imgUrlS = "https://image.tmdb.org/t/p/w200/";
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -28,7 +29,7 @@ function DescriptionMovie(){
             setmovieTMDB(response.data);
             console.log('TMDB:', response.data);
         } else {
-            console.error('Error: Datos de película no encontrados.');
+            console.error('Error: Datos de TMDB no encontrados.');
         }
       } catch (error) {
         console.error('Error al obtener datos de la API:', error);
@@ -42,7 +43,7 @@ function DescriptionMovie(){
             setmovieOMDB(response.data);
             console.log('OMDB:', response.data);
         } else {
-            console.error('Error: Datos de película no encontrados.');
+            console.error('Error: Datos de OMDB no encontrados.');
         }
       } catch (error) {
         console.error('Error al obtener datos de la API:', error);
@@ -50,12 +51,13 @@ function DescriptionMovie(){
 
       try {
         const apiKey = '6bce84c9599883d5e4033758c40ab14f';
-        const response = await axios.get(`https://api.themoviedb.org/3/movie/${id}/keywords&apikey=${apiKey}`);
+        const response = await axios.get(`https://api.themoviedb.org/3/movie/${id}/keywords?language=es&api_key=${apiKey}`);
   
         if (response.data) {
-            setKeyWords(response.data);
+          console.log('KeyWords:', response.data.keywords);
+          setKeyWords(response.data.keywords);
         } else {
-            console.error('Error: Datos de película no encontrados.');
+            console.error('Error: Keywords no encontrados.');
         }
       } catch (error) {
         console.error('Error al obtener datos de la API:', error);
@@ -66,10 +68,10 @@ function DescriptionMovie(){
         const response = await axios.get(`https://api.themoviedb.org/3/movie/${id}/credits?language=es&api_key=${apiKey}`);
   
         if (response.data.cast) {
-            setCastList(response.data);
+            setCastList(response.data.cast);
             console.log('Cast:', response.data.cast);
         } else {
-            console.error('Error: Datos de película no encontrados.');
+            console.error('Error: Creditos no encontrados.');
         }
       } catch (error) {
         console.error('Error al obtener datos de la API:', error);
@@ -145,18 +147,37 @@ function DescriptionMovie(){
                     <p> Duracion: {movieOMDB.Runtime}</p>
                     <p>Escrita por: {movieOMDB.Writer}</p>
                     </div>
+
+
+                    <div className='CastBox'>
+                      <div className='CastTitle'>Reparto</div>
+                      <div className='CastList'>
+                        
+                          {Array.isArray(castList) && castList.map((actor) => (
+                            <div className='ActorBox'>
+                              <img src={imgUrlS + actor.profile_path}></img>
+                              <div  key={actor.id}> <div className='ActorName'>{actor.name}</div> {actor.character} </div>
+                            </div>
+                          ))}
+                        
+                      </div>
+                    </div>
+
+                    <div className='ThemeInfo' >
+                      <div className='CastTitle'>Temas</div>
+                      <div className='ThemeBox' >
+                        {Array.isArray(keyWords) && keyWords.map((theme) => (
+                          <div className='ThemItem'>
+                            <div key={theme.id}> {theme.name} </div>
+                          </div>
+                        ))}
+
+                      </div>
+
+                    </div>
                 </div>
 
-                <div className='CastBox'>
-                  <hi>Reparto</hi>
-                  <div className='CastList'>
-                    <ul>
-                      {Array.isArray(castList) && castList.map((actor) => (
-                          <li key={actor.id}>{actor.name} - {actor.character}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
+                
             </div>
         </div>
         
