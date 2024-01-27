@@ -3,11 +3,11 @@ import '../style/Poster.css';
 import React, { useState, useEffect} from 'react';
 import defaultPoster from '../resources/defaultposter.png'
 import axios from 'axios';
-import { Button } from '@mui/material';
-import IconButton from '@mui/material/IconButton';
 import WatchLaterIcon from '@mui/icons-material/WatchLater';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart, faEye, faClock } from '@fortawesome/free-solid-svg-icons';
 import MyButtonLink from './MyButtonLink';
 
 
@@ -58,15 +58,15 @@ function Poster({ id, name }) {
         <div className='MoreInfo'>
           <div className='ButtonsBox'>
             <div className='ButtonsPoster'>
-              <IconButton>
-                <WatchLaterIcon sx={{ fontSize: 15 }}/>
-              </IconButton>
-              <IconButton>
-                <VisibilityIcon sx={{ fontSize: 15 }}/>
-              </IconButton>
-              <IconButton>
-                <ThumbUpIcon sx={{ fontSize: 15 }}/>
-              </IconButton>
+              <button>
+                <FontAwesomeIcon icon={faHeart} style={{color: "#ffffff",}} />
+              </button>
+              <button>
+                <FontAwesomeIcon icon={faClock} style={{color: "#ffffff",}}/>
+              </button>
+              <button>
+                <FontAwesomeIcon icon={faEye} style={{color: "#ffffff",}} />
+              </button>
             </div>
           </div>
           <div className='NotaPoster'> {Math.round(movie.vote_average* 10) / 10}</div>

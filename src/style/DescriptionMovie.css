@@ -170,3 +170,8 @@
   padding: 7px;
   border-radius: 5px;
 }
+
+.ButtonsPoster button{
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+}
