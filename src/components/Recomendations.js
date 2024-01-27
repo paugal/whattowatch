@@ -8,6 +8,9 @@ import { useMovieContext } from './contextos/MovieContext';
 function Recomendations({ selectedMovieIds }) {
   const { updateScrollPosition } = useMovieContext();
   const [recomFinalList, setRecomFinalList] = useState([]);
+  const [seen, setSeen] = useState(['tt1160419'])
+  const [fav, setFav] = useState(['tt1160419'])
+  const [watchList, setwatchList] = useState(['tt1160419'])
 
   useEffect(() => {
     console.log('Fetching recommendations...');
@@ -72,7 +75,13 @@ function Recomendations({ selectedMovieIds }) {
       <h1 className='Titulo'>Películulas parecidas que tal vez te gusten</h1>
       <div className='recomendationBox'>
         {recomFinalList.map((movie) => (
-          <Poster key={movie.id} id={movie.id} name={movie.title} />
+          <Poster 
+            key={movie.id} 
+            id={movie.id} 
+            name={movie.title} 
+            isSeen={seen.includes(movie.id)}
+            isFav={fav.includes(movie.id)}
+            inWatchList={watchList.includes(movie.id)}/>
         ))}
       </div>
     </div>

@@ -9,9 +9,9 @@ import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faEye, faClock } from '@fortawesome/free-solid-svg-icons';
 import MyButtonLink from './MyButtonLink';
+import { Link } from 'react-router-dom';
 
-
-function Poster({ id, name }) {
+function Poster({ id, name, isSeen, isFav, inWatchList}) {
   const [movie, setMovie] = useState([]);
   const imgUrlM = "https://image.tmdb.org/t/p/w400/";
 
@@ -45,34 +45,53 @@ function Poster({ id, name }) {
     console.log('UseEffect with movie:', movie);
   }, [movie]);
 
+  const handleButtonFavClick = (e) => {
+    e.stopPropagation();
+    console.log("Favorite")
+  };
+  const handleButtonWatchListClick = (e) => {
+    e.stopPropagation();
+    console.log("WatchList")
+  };
+  const handleButtonSeenClick = (e) => {
+    e.stopPropagation();
+    console.log("Seen")
+  };
+
+  const handleContainerClick = (e) => {
+    e.stopPropagation();
+    const movieId = movie.imdb_id;
+    window.location.href = `/film/${movieId}`;
+    
+  };
+
+
   return (
-    <div className="posterContainer" key={id}>
-    <a href={`/film/${movie.imdb_id}`}>
-      {movie && (
-        <img
-          src={movie.poster_path ? imgUrlM + movie.poster_path : defaultPoster}
-          alt={movie.title}
-        />
-      )}
-      <div className="border-overlay">
-        <div className='MoreInfo'>
-          <div className='ButtonsBox'>
-            <div className='ButtonsPoster'>
-              <button>
-                <FontAwesomeIcon icon={faHeart} style={{color: "#ffffff",}} />
-              </button>
-              <button>
-                <FontAwesomeIcon icon={faClock} style={{color: "#ffffff",}}/>
-              </button>
-              <button>
-                <FontAwesomeIcon icon={faEye} style={{color: "#ffffff",}} />
-              </button>
+    <div className="posterContainer" key={id} onClick={handleContainerClick}>
+        {movie && (
+          <img
+            src={movie.poster_path ? imgUrlM + movie.poster_path : defaultPoster}
+            alt={movie.title}
+          />
+        )}
+        <div className="border-overlay">
+          <div className='MoreInfo'>
+            <div className='ButtonsBox'>
+              <div className='ButtonsPoster'>
+                <button onClick={handleButtonFavClick}>
+                  <FontAwesomeIcon icon={faHeart} style={{color: "#ffffff"}} />
+                </button>
+                <button onClick={handleButtonWatchListClick}>
+                  <FontAwesomeIcon icon={faClock} style={{color: "#ffffff"}} />
+                </button>
+                <button onClick={handleButtonSeenClick}>
+                  <FontAwesomeIcon icon={faEye} style={{color: "#ffffff"}} />
+                </button>
+              </div>
             </div>
-          </div>
           <div className='NotaPoster'> {Math.round(movie.vote_average* 10) / 10}</div>
         </div>
       </div>
-    </a>
   </div>
   );
 }

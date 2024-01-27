@@ -12,6 +12,7 @@ function SelectThree({ updateSelectedMovies: propUpdateSelectedMovies }) {
   const [selectedMoviesId, setSelectedMoviesId] = useState([]);
   const [recomendationsVisible, setRecomendationsVisible] = useState(false);
 
+
   useEffect(() => {
     const storedMovies = sessionStorage.getItem('selectedMovies');
     if (storedMovies) {

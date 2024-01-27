@@ -52,6 +52,7 @@
     cursor: pointer;
     border-radius: 5px;
     transition: all .3s linear;
+    pointer-events: none;
   }
 
   .ButtonsPoster{
@@ -73,7 +74,7 @@
     z-index: 5;
     text-align: center;
     overflow: hidden;
-    color: var(--coText)
+    color: var(--coText);
   }
 
   .MoreInfo:hover::before {
@@ -91,6 +92,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    z-index: 10;
   }
 
   .ButtonsPoster{
@@ -110,10 +112,15 @@
     border-radius: 5px;
   }
 
-  .ButtonsPoster IconButton{
-   
+  .ButtonsPoster {
+    position: absolute;
+    top: 3px;
   }
 
   .border-overlay:hover .MoreInfo {
     display: block;
+  }
+
+  .ButtonsPoster button {
+    pointer-events: auto; /* Asegúrate de que no sea 'none' */
   }
