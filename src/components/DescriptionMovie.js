@@ -8,6 +8,7 @@ import MetacriticIcon from '../resources/MetacriticIcon.png'
 import Rotten_Tomatoes from '../resources/Rotten_Tomatoes.png'
 import { useGlobalConfig } from './GlobalConfigContext'
 import { useParams } from 'react-router-dom';
+import defaultAvatar from '../resources/placeholder/defaultAvatar.jpg'
 
 
 function DescriptionMovie(){
@@ -79,10 +80,17 @@ function DescriptionMovie(){
       
 
     };
-  
-    // Se ejecuta solo al montar el componente
     fetchMovies();
-  }, []);  // Arreglo de dependencia vacío
+  }, []);
+
+  useEffect(() => {
+    if(!movieTMDB.backdrop_path){
+      console.log('Joli3')
+      const dataMovieBox = document.querySelector('.dataMovieBox');
+      dataMovieBox.style.marginTop = '10px';
+    }
+
+  }, [movieTMDB, movieOMDB]);
 
   const renderGenres = () => {
     if (movieTMDB.genres && movieTMDB.genres.length > 0) {
@@ -98,9 +106,11 @@ function DescriptionMovie(){
     return(
         
         <div className='fullInfoMovieBox'>
+          { movieTMDB.backdrop_path ? (
             <div className='backdrop'>
                 <img src={'https://image.tmdb.org/t/p/w1280' + movieTMDB.backdrop_path } alt='dune'></img>
             </div>
+          ) : null}
             <div className='dataMovieBox'>
                 <div className='LeftColum'>
                     <div className='posterContainer'>
@@ -115,13 +125,13 @@ function DescriptionMovie(){
                         <div className='ratingItem'>
                         <img src={Rotten_Tomatoes}/>
                             <p>{movieOMDB && movieOMDB.Ratings && movieOMDB.Ratings.length > 0 && (
-                                <p>{movieOMDB.Ratings[1].Value}</p> )}
+                                <p>{movieOMDB.Ratings[1] ? movieOMDB.Ratings[1].Value : 'Sin Nota'}</p> )}
                             </p>
                         </div>
                         <div className='ratingItem'>
                             <img src={MetacriticIcon}/>
                             <p>{movieOMDB && movieOMDB.Ratings && movieOMDB.Ratings.length > 0 && (
-                                <p>{movieOMDB.Ratings[2].Value}</p> )}
+                                <p>{movieOMDB.Ratings[2] ? movieOMDB.Ratings[1].Value : 'Sin Nota'}</p> )}
                             </p>
                         </div>
                         
@@ -155,7 +165,7 @@ function DescriptionMovie(){
                         
                           {Array.isArray(castList) && castList.map((actor) => (
                             <div className='ActorBox'>
-                              <img src={imgUrlS + actor.profile_path}></img>
+                              <img src={ actor.profile_path ? imgUrlS + actor.profile_path : defaultAvatar} alt={actor.name}></img>
                               <div  key={actor.id}> <div className='ActorName'>{actor.name}</div> {actor.character} </div>
                             </div>
                           ))}
