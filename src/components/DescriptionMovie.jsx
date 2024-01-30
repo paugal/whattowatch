@@ -17,6 +17,7 @@ function DescriptionMovie(){
     const [movieOMDB, setmovieOMDB] = useState([]);
     const [keyWords, setKeyWords] = useState([]);
     const [castList, setCastList] = useState([]);
+    const [recomendaciones, setRecomendaciones] = useState([]);
     const imgUrlM = "https://image.tmdb.org/t/p/w400/";
     const imgUrlS = "https://image.tmdb.org/t/p/w200/";
 
@@ -77,6 +78,19 @@ function DescriptionMovie(){
       } catch (error) {
         console.error('Error al obtener datos de la API:', error);
       }
+      try {
+        const apiKey = '6bce84c9599883d5e4033758c40ab14f';
+        const response = await axios.get(`https://api.themoviedb.org/3/movie/${id}/recommendations?language=es&api_key=${apiKey}`);
+  
+        if (response.data.cast) {
+            setRecomendaciones(response.data);
+            console.log('Cast:', response.data.cast);
+        } else {
+            console.error('Error: Creditos no encontrados.');
+        }
+      } catch (error) {
+        console.error('Error al obtener datos de la API:', error);
+      }
       
 
     };
@@ -84,13 +98,16 @@ function DescriptionMovie(){
   }, []);
 
   useEffect(() => {
+    const dataMovieBox = document.querySelector('.dataMovieBox');
     if(!movieTMDB.backdrop_path){
       console.log('Joli3')
-      const dataMovieBox = document.querySelector('.dataMovieBox');
+      
       dataMovieBox.style.marginTop = '10px';
+    }else{
+      dataMovieBox.style.marginTop = '450px';
     }
 
-  }, [movieTMDB, movieOMDB]);
+  }, [movieTMDB]);
 
   const renderGenres = () => {
     if (movieTMDB.genres && movieTMDB.genres.length > 0) {

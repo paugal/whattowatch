@@ -50,28 +50,3 @@ body {
   font-family: 'League Spartan', serif;
 }
 
-
-.TopVarContainer{
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 64px;
-  z-index: 1000;
-  transition: top .2s linear;
-  background-color: var(--coPri);
-}
-
-.Logo{
-  color: antiquewhite;
-  font-weight: 800;
-  font-size: 35px;
-}
-
-.Logo a{
-  color: antiquewhite;
-  text-decoration: none;
-}

@@ -2,8 +2,8 @@ import '../style/App.css';
 import '../style/Recomendations.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Poster from "./Poster.js";
-import { useMovieContext } from './contextos/MovieContext';
+import Poster from "./Poster.jsx";
+import { useMovieContext } from './contextos/MovieContext.js';
 
 function Recomendations({ selectedMovieIds }) {
   const { updateScrollPosition } = useMovieContext();

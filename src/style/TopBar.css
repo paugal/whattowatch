@@ -1,0 +1,41 @@
+
+.TopBarContainer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 64px;
+    z-index: 100;
+    transition: top .2s linear;
+    background-color: var(--coPri);
+  }
+
+.TopBarCenter{
+  max-width: 1000px;
+  width: 100%;
+  z-index: 101;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.TopBarContainer #Logo{
+  font-weight: 800;
+  font-size: 35px;
+}
+
+.topBarButtons{
+  display: flex;
+  gap: 30px;
+  margin-right: 20px;
+  font-weight: 600;
+}
+
+
+.TopBarContainer a{
+  color: antiquewhite;
+  text-decoration: none;
+}
+

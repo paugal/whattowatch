@@ -2,9 +2,10 @@ import './style/App.css';
 import SelectThree from './components/SelectThree';
 import Recomendations from './components/Recomendations'
 import React, { useState } from 'react';
-import TopVar from './components/TopVar';
+import TopVar from './components/TopBar';
 import DescriptionMovie from './components/DescriptionMovie';
 import { MovieProvider } from './components/contextos/MovieContext';
+import PopularMovies from './components/PopularMovies';
 import {
   BrowserRouter as Router, Routes,
   Route
@@ -29,6 +30,7 @@ function App() {
                     <Route path="/" element={ <SelectThree updateSelectedMovies={updateSelectedMovies}/>} />
                     <Route path="/film/:id"
                         element={ <DescriptionMovie/>} />
+                    <Route path="/popular" element={ <PopularMovies/>} />
                 </Routes>
               </MovieProvider>
           </Router>
