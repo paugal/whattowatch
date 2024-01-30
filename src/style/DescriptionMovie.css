@@ -73,6 +73,10 @@
   gap: 20px;
 }
 
+.TituloPelicula h1{
+  font-size: 35px;
+}
+
 .genresBox{
   display: flex;
   flex-direction: row;
@@ -129,7 +133,7 @@
 }
 .CastList{
   display: flex;
-  width: 550px;
+  width: 650px;
   overflow: scroll;
   flex-direction: row;
   justify-content: flex-start;
@@ -174,4 +178,19 @@
 .ButtonsPoster button{
   background-color: rgba(0, 0, 0, 0);
   border: none;
+}
+
+.ThemeInfo{
+  margin-top: 30px;
+}
+
+
+.RecomendationsList{
+  display: flex;
+  overflow: scroll;
+}
+
+.RecomendationsList .posterContainer{
+  height: 200px;
+  width: 130px;
 }

@@ -9,6 +9,7 @@ import Rotten_Tomatoes from '../resources/Rotten_Tomatoes.png'
 import { useGlobalConfig } from './GlobalConfigContext'
 import { useParams } from 'react-router-dom';
 import defaultAvatar from '../resources/placeholder/defaultAvatar.jpg'
+import Poster from './Poster';
 
 
 function DescriptionMovie(){
@@ -78,19 +79,7 @@ function DescriptionMovie(){
       } catch (error) {
         console.error('Error al obtener datos de la API:', error);
       }
-      try {
-        const apiKey = '6bce84c9599883d5e4033758c40ab14f';
-        const response = await axios.get(`https://api.themoviedb.org/3/movie/${id}/recommendations?language=es&api_key=${apiKey}`);
-  
-        if (response.data.cast) {
-            setRecomendaciones(response.data);
-            console.log('Cast:', response.data.cast);
-        } else {
-            console.error('Error: Creditos no encontrados.');
-        }
-      } catch (error) {
-        console.error('Error al obtener datos de la API:', error);
-      }
+      
       
 
     };
@@ -107,6 +96,21 @@ function DescriptionMovie(){
       dataMovieBox.style.marginTop = '450px';
     }
 
+    const fetchMovies = async () => {
+      try {
+        const apiKey = '6bce84c9599883d5e4033758c40ab14f';
+        
+        if(movieTMDB.id){
+          const response = await axios.get(`https://api.themoviedb.org/3/movie/${movieTMDB.id}/recommendations?api_key=${apiKey}`);
+          setRecomendaciones(response.data.results);
+        } else {
+            console.error('Error: Recomendaciones no encontradas.');
+        }
+      } catch (error) {
+        console.error('Error al obtener datos de la API:', error);
+      }
+    }
+    fetchMovies();
   }, [movieTMDB]);
 
   const renderGenres = () => {
@@ -148,7 +152,7 @@ function DescriptionMovie(){
                         <div className='ratingItem'>
                             <img src={MetacriticIcon}/>
                             <p>{movieOMDB && movieOMDB.Ratings && movieOMDB.Ratings.length > 0 && (
-                                <p>{movieOMDB.Ratings[2] ? movieOMDB.Ratings[1].Value : 'Sin Nota'}</p> )}
+                                <p>{movieOMDB.Ratings[2] ? movieOMDB.Ratings[2].Value : 'Sin Nota'}</p> )}
                             </p>
                         </div>
                         
@@ -188,6 +192,19 @@ function DescriptionMovie(){
                           ))}
                         
                       </div>
+                    </div>
+
+                    <div className='Recomendaciones' >
+                      <div> Recomendaciones </div>
+                      <div className='RecomendationsList' >
+                        {recomendaciones.map((movie) => (
+                          <Poster 
+                            key={movie.id} 
+                            id={movie.id} 
+                            name={movie.title}/>
+                        ))}
+                      </div>
+
                     </div>
 
                     <div className='ThemeInfo' >
