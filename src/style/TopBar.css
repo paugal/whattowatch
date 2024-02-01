@@ -31,11 +31,42 @@
   gap: 30px;
   margin-right: 20px;
   font-weight: 600;
+  align-items: center;
 }
 
+.TopBarContainer{
+  color: antiquewhite;
+}
 
 .TopBarContainer a{
   color: antiquewhite;
   text-decoration: none;
 }
 
+
+
+.topBarButtons input{
+  height: 30px;
+  font-size: 10px;
+  padding: 5px;
+  border: none;
+  box-shadow: none;
+}
+
+.SearchBarTop{
+  display: flex;
+  align-items: center;
+}
+
+.buscador{
+  display: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 1px solid white;
+  border-radius: 5px;
+  outline: none;
+  box-sizing: border-box;
+  background-color: white;
+  margin-left: 5px;
+}

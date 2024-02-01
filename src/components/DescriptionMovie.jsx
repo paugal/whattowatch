@@ -196,7 +196,7 @@ function DescriptionMovie(){
 
                     <div className='Recomendaciones' >
                       <div> Recomendaciones </div>
-                      <div className='RecomendationsList' >
+                      <div className='RecomendationsList' style={{ width: '650px', overflowX: 'scroll', display: 'flex' }}>
                         {recomendaciones.map((movie) => (
                           <Poster 
                             key={movie.id} 

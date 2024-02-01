@@ -3,13 +3,8 @@ import '../style/Poster.css';
 import React, { useState, useEffect} from 'react';
 import defaultPoster from '../resources/defaultposter.png'
 import axios from 'axios';
-import WatchLaterIcon from '@mui/icons-material/WatchLater';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faEye, faClock } from '@fortawesome/free-solid-svg-icons';
-import MyButtonLink from './MyButtonLink';
-import { Link } from 'react-router-dom';
 
 function Poster({ id, name, isSeen, isFav, inWatchList}) {
   const [movie, setMovie] = useState([]);

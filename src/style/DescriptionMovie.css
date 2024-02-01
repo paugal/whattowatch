@@ -190,7 +190,15 @@
   overflow: scroll;
 }
 
+.RecomendationsList .posterContainer img{
+  height: 250px;
+  width: 169px;
+}
+
 .RecomendationsList .posterContainer{
-  height: 200px;
-  width: 130px;
+  height: auto;
+}
+
+.RecomendationsList .border-overlay{
+  height: 250px;
 }
