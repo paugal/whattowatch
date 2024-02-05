@@ -30,7 +30,6 @@ function DescriptionMovie(){
   
         if (response.data) {
             setmovieTMDB(response.data);
-            console.log('TMDB:', response.data);
         } else {
             console.error('Error: Datos de TMDB no encontrados.');
         }
@@ -44,7 +43,6 @@ function DescriptionMovie(){
   
         if (response.data) {
             setmovieOMDB(response.data);
-            console.log('OMDB:', response.data);
         } else {
             console.error('Error: Datos de OMDB no encontrados.');
         }
@@ -57,7 +55,6 @@ function DescriptionMovie(){
         const response = await axios.get(`https://api.themoviedb.org/3/movie/${id}/keywords?language=es&api_key=${apiKey}`);
   
         if (response.data) {
-          console.log('KeyWords:', response.data.keywords);
           setKeyWords(response.data.keywords);
         } else {
             console.error('Error: Keywords no encontrados.');
@@ -72,7 +69,6 @@ function DescriptionMovie(){
   
         if (response.data.cast) {
             setCastList(response.data.cast);
-            console.log('Cast:', response.data.cast);
         } else {
             console.error('Error: Creditos no encontrados.');
         }
@@ -89,7 +85,6 @@ function DescriptionMovie(){
   useEffect(() => {
     const dataMovieBox = document.querySelector('.dataMovieBox');
     if(!movieTMDB.backdrop_path){
-      console.log('Joli3')
       
       dataMovieBox.style.marginTop = '10px';
     }else{

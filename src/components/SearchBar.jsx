@@ -48,8 +48,6 @@ const SearchBar = ({updateSelectedMovie, index}) => {
   }, [query, showList]);
 
   const handleSelection = (selectedMovie) => {
-    // Lógica para manejar la selección
-    console.log('Película seleccionada:', selectedMovie);
     setSelectedMovie({
       id: selectedMovie.id,
       title: selectedMovie.title

@@ -5,6 +5,7 @@ import axios from 'axios';
 import Poster from "./Poster.jsx";
 import { useMovieContext } from './contextos/MovieContext.js';
 
+
 function Recomendations({ selectedMovieIds }) {
   const { updateScrollPosition } = useMovieContext();
   const [recomFinalList, setRecomFinalList] = useState([]);
@@ -13,14 +14,10 @@ function Recomendations({ selectedMovieIds }) {
   const [watchList, setwatchList] = useState(['tt1160419'])
 
   useEffect(() => {
-    console.log('Fetching recommendations...');
     const savedScrollPosition = sessionStorage.getItem('scrollPosition');
-    console.log('Saved Scroll Position:', savedScrollPosition);
 
     if (savedScrollPosition) {
-      console.log('Restoring scroll position:', savedScrollPosition);
 
-      // Esperar 100ms antes de intentar desplazar la página
       setTimeout(() => {
         window.scrollTo(0, parseInt(savedScrollPosition, 10));
       }, 100);
@@ -28,8 +25,6 @@ function Recomendations({ selectedMovieIds }) {
   }, []);
 
   useEffect(() => {
-    console.log('Selected Movie IDs changed:', selectedMovieIds);
-
     const fetchRecomentdations = async () => {
       try {
         const apiKey = '6bce84c9599883d5e4033758c40ab14f';
@@ -40,12 +35,10 @@ function Recomendations({ selectedMovieIds }) {
 
         const recomendations = await Promise.all(promises);
         const finalList = recomendations.flatMap(array => array.results);
-        console.log('Fetched Recommendations:', finalList);
         setRecomFinalList(finalList);
         
         // Save scroll position after loading recommendations
         const scrollY = window.scrollY.toString();
-        console.log('Saving scroll position after loading recommendations:', scrollY);
         sessionStorage.setItem('scrollPosition', scrollY);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -58,14 +51,12 @@ function Recomendations({ selectedMovieIds }) {
 
     const handleScroll = () => {
       const scrollY = window.scrollY.toString();
-      console.log('Handling scroll. Saving position:', scrollY);
       sessionStorage.setItem('scrollPosition', scrollY);
     };
 
     window.addEventListener('scroll', handleScroll);
 
     return () => {
-      console.log('Removing scroll event listener.');
       window.removeEventListener('scroll', handleScroll);
     };
   }, [selectedMovieIds]);

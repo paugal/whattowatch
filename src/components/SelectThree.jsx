@@ -29,7 +29,6 @@ function SelectThree({ updateSelectedMovies: propUpdateSelectedMovies }) {
 
   const handleSearch = () => {
     const nonEmptyTitles = selectedMoviesId.filter(id => typeof id === 'number');
-    console.log('Títulos seleccionados:', nonEmptyTitles);
     propUpdateSelectedMovies(nonEmptyTitles);
     setRecomendationsVisible(true);
 

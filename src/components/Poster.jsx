@@ -8,6 +8,7 @@ import { faHeart, faEye, faClock } from '@fortawesome/free-solid-svg-icons';
 
 function Poster({ id, name, isSeen, isFav, inWatchList}) {
   const [movie, setMovie] = useState([]);
+  const [movieOMDb , setMovieOMDb ] = useState([]);
   const imgUrlM = "https://image.tmdb.org/t/p/w400/";
 
   useEffect(() => {
@@ -15,42 +16,43 @@ function Poster({ id, name, isSeen, isFav, inWatchList}) {
       try {
         const apiKey = '6bce84c9599883d5e4033758c40ab14f';
         const response = await axios.get(`https://api.themoviedb.org/3/movie/${id}?language=es&api_key=${apiKey}`);
-        console.log('RESPONSE:');
   
         if (response.data) {
           setMovie(response.data);
-          console.log('POSTER:', response.data);
         } else {
           console.error('Error: Datos de película no encontrados.');
         }
       } catch (error) {
         console.error('Error al obtener datos de la API:', error);
       }
-    };
-  
-    // Se ejecuta solo al montar el componente
-    fetchMovies();
-  }, []);  // Arreglo de dependencia vacío
-  
-  // Resto del código...
-  
 
-  useEffect(() => {
-    // Agrega un console.log aquí para verificar si este useEffect se ejecuta
-    console.log('UseEffect with movie:', movie);
-  }, [movie]);
+      try {
+        const apiKey = 'fb8928eb';
+        const response = await axios.get(`https://www.omdbapi.com/?i=${movie.imdb_id}&plot=full&apikey=${apiKey}`);
+  
+        if (response.data) {
+          console.log(response.data)
+          setMovieOMDb(response.data);
+        } else {
+            console.error('Error: Datos de OMDB no encontrados.');
+        }
+      } catch (error) {
+        console.error('Error al obtener datos de la API:', error);
+      }
+
+    };
+
+    fetchMovies();
+  }, []);  
 
   const handleButtonFavClick = (e) => {
     e.stopPropagation();
-    console.log("Favorite")
   };
   const handleButtonWatchListClick = (e) => {
     e.stopPropagation();
-    console.log("WatchList")
   };
   const handleButtonSeenClick = (e) => {
     e.stopPropagation();
-    console.log("Seen")
   };
 
   const handleContainerClick = (e) => {
@@ -84,7 +86,10 @@ function Poster({ id, name, isSeen, isFav, inWatchList}) {
                 </button>
               </div>
             </div>
-          <div className='NotaPoster'> {Math.round(movie.vote_average* 10) / 10}</div>
+          <div className='NotaPoster'> 
+            {Math.round(movie.vote_average* 10) / 10}
+
+          </div>
         </div>
       </div>
   </div>
