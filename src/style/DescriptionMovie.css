@@ -126,6 +126,10 @@
   justify-content: center;
   height: 55px;
 }
+.CastBox{
+  margin-top: 30px;
+}
+
 .CastTitle{
   text-align: left;
   font-size: 20px;
@@ -184,6 +188,9 @@
   margin-top: 30px;
 }
 
+.Recomendaciones{
+  margin-top: 20px;
+}
 
 .RecomendationsList{
   display: flex;
@@ -201,4 +208,42 @@
 
 .RecomendationsList .border-overlay{
   height: 250px;
+  border: 3px solid #16151c;
+}
+
+.BigTitle{
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.TituloPelicula p{
+  font-size: 20px;
+  margin-top: 0px;
+}
+
+.TituloPelicula h1{
+  margin-bottom: 5px;
+}
+
+.SmallTitle{
+  display: flex;
+  flex-direction: row;
+  text-align: left;
+  gap: 20px;
+  align-items: flex-end;
+}
+
+.SmallTitle p{
+  margin-bottom: 4px;
+}
+
+.SmallTitle h1{
+  margin-bottom: 0px;
+}
+
+.OtherInfoTitle{
+  display: flex;
+  flex-direction: column;
+  text-align: left;
 }

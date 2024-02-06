@@ -10,6 +10,7 @@
     z-index: 100;
     transition: top .2s linear;
     background-color: var(--coPri);
+    box-shadow: rgb(48 48 50 / 90%) 0px 7px 29px 0px;
   }
 
 .TopBarCenter{
@@ -32,6 +33,7 @@
   margin-right: 20px;
   font-weight: 600;
   align-items: center;
+  
 }
 
 .TopBarContainer{

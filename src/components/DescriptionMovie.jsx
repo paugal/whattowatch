@@ -18,7 +18,11 @@ function DescriptionMovie(){
     const [movieOMDB, setmovieOMDB] = useState([]);
     const [keyWords, setKeyWords] = useState([]);
     const [castList, setCastList] = useState([]);
+    const [titleLenght, setTitleLenght] = useState([]);
     const [recomendaciones, setRecomendaciones] = useState([]);
+    const [visibleCount, setVisibleCount] = useState(10);
+    
+
     const imgUrlM = "https://image.tmdb.org/t/p/w400/";
     const imgUrlS = "https://image.tmdb.org/t/p/w200/";
 
@@ -43,6 +47,7 @@ function DescriptionMovie(){
   
         if (response.data) {
             setmovieOMDB(response.data);
+            setTitleLenght(response.data.Title.length);
         } else {
             console.error('Error: Datos de OMDB no encontrados.');
         }
@@ -108,6 +113,11 @@ function DescriptionMovie(){
     fetchMovies();
   }, [movieTMDB]);
 
+  const handleLoadMore = () => {
+    // Aumentamos el número de elementos mostrados en 10
+    setVisibleCount(prevCount => prevCount + 10);
+  };
+
   const renderGenres = () => {
     if (movieTMDB.genres && movieTMDB.genres.length > 0) {
       return movieTMDB.genres.map((genre) => (
@@ -159,19 +169,29 @@ function DescriptionMovie(){
 
                 </div>
                 <div className='CentralColum'>
-                    <div className='TituloPelicula'>
+                  <div className="TituloPelicula">
+                    
+                    {titleLenght > 10 ? (
+                      <div className="BigTitle">
+                        <h1>{movieTMDB.title}</h1>
+                        <p>{movieOMDB.Year} Dirigido por {movieOMDB.Director}</p>
+                      </div>
+                    ) : (
+                      <div className="SmallTitle" >
                         <h1>{movieTMDB.title}</h1>
                         <p>{movieOMDB.Year}</p>
-                        <p> Dirigido por {movieOMDB.Director}</p>
+                        <p>Dirigido por {movieOMDB.Director}</p>
                         
-                    </div>
+                      </div>
+                    )}
+                </div>
                     <div className='DescriptionMovie'>
                         <p className='TagLine'>{movieTMDB.tagline}</p>
                         <p>{movieTMDB.overview}</p>
                     </div>
-                    <div className='OtherInfo'>
-                    <p> Duracion: {movieOMDB.Runtime}</p>
-                    <p>Escrita por: {movieOMDB.Writer}</p>
+                    <div className='OtherInfoTitle'>
+                      <div> Duracion: {movieOMDB.Runtime}</div>
+                      <div>Escrita por: {movieOMDB.Writer}</div>
                     </div>
 
 
@@ -190,7 +210,7 @@ function DescriptionMovie(){
                     </div>
 
                     <div className='Recomendaciones' >
-                      <div> Recomendaciones </div>
+                      <div className='CastTitle'> Recomendaciones </div>
                       <div className='RecomendationsList' style={{ width: '650px', overflowX: 'scroll', display: 'flex' }}>
                         {recomendaciones.map((movie) => (
                           <Poster 
@@ -201,19 +221,25 @@ function DescriptionMovie(){
                       </div>
 
                     </div>
-
+                    {keyWords.length > 0 && (
                     <div className='ThemeInfo' >
                       <div className='CastTitle'>Temas</div>
-                      <div className='ThemeBox' >
-                        {Array.isArray(keyWords) && keyWords.map((theme) => (
-                          <div className='ThemItem'>
-                            <div key={theme.id}> {theme.name} </div>
+                      <div className='ThemeBox'>
+                        {/* Mapeamos los primeros 'visibleCount' elementos */}
+                        {Array.isArray(keyWords) && keyWords.slice(0, visibleCount).map((theme) => (
+                          <div className='ThemItem' key={theme.id}>
+                            {theme.name}
                           </div>
                         ))}
 
-                      </div>
+                        {/* Botón para cargar más elementos si hay más de 10 */}
+                        {keyWords.length > visibleCount && (
+                          <button onClick={handleLoadMore}>Load More</button>
+                        )}
+                    </div>
 
                     </div>
+                    )}
                 </div>
 
                 
