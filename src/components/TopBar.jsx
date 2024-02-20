@@ -1,62 +1,76 @@
 import '../style/App.css';
 import '../style/TopBar.css';
+import { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass, faTimes } from '@fortawesome/free-solid-svg-icons';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons';
+function TopVar() {
+  const [isSearching, setIsSearching] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
-
-function TopVar(){
-
-
-    function buscar(){
-        document.getElementById("startBuscar").style.display = "none";
-        document.getElementById("cruzBuscador").style.display = "block";
-        document.getElementsByClassName("buscador")[0].style.display = "block";
+  const handleSearch = () => {
+    if(searchQuery != ''){
+        window.location.href = `/search/${searchQuery}`;
     }
+    
+  };
 
-    function noBuscar(){
-        document.getElementById("startBuscar").style.display = "block";
-        document.getElementById("cruzBuscador").style.display = "none";
-        document.getElementsByClassName("buscador")[0].style.display = "none";
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      handleSearch();
     }
+  };
 
-    return (
-        <div className='TopBarContainer'>
-            <div className='TopBarCenter'>
+  const toggleSearchBar = () => {
+    setIsSearching((prevState) => !prevState);
+  };
 
-            
-                <a id='Logo' href={`/`}>
-                    WhatToWatch
-                </a>
-                <div className='topBarButtons' >
-                    <a href={`/popular`}>
-                        POPULAR
-                    </a>
-                    <a href={`/popular`}>
-                        WATCHLIST
-                    </a>
-                    <a href={`/popular`}>
-                        PERFIL
-                    </a>
-                    <div className='SearchBarTop' >
-                        <div id="startBuscar" onClick={buscar}>
-                            BUSCAR
-                        </div>
-                        <FontAwesomeIcon onClick={noBuscar} id="cruzBuscador" icon={faXmark} size="xl" style={{color: "#f0f5ff", display: "none"}} />
-                        <div className='buscador' >
-                            <input id='barraBuscador'/>
-                            <a href={`/popular`}>
-                                <FontAwesomeIcon icon={faMagnifyingGlass} style={{color: "#000000",}} />
-                            </a>
-                        </div>
-
+  return (
+    <div className='TopBarContainer'>
+      <div className='TopBarCenter'>
+        <a id='Logo' href={`/`}>
+          WhatToWatch
+        </a>
+        <div className='topBarButtons'>
+          <a href={`/popular`}>POPULAR</a>
+          <a href={`/watchlist`}>WATCHLIST</a>
+          <a href={`/perfil`}>PERFIL</a>
+          <div className='SearchBarTop'>
+            {!isSearching ? (
+              <div id='startBuscar' onClick={toggleSearchBar}>
+                BUSCAR
+              </div>
+            ) : (
+                <div className='SearchBoxInput'>
+                    <FontAwesomeIcon
+                    onClick={toggleSearchBar}
+                    id='cruzBuscador'
+                    icon={faTimes}
+                    size='lg'
+                    style={{ color: '#f0f5ff' }}
+                    />
+                    <div className="buscador">
+                    <input
+                        id='barraBuscador'
+                        autoFocus
+                        onKeyDown={handleKeyPress}
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                    />
+                    <FontAwesomeIcon
+                        className='lupaIcon'
+                        onClick={handleSearch}
+                        icon={faMagnifyingGlass}
+                        style={{ color: '#faebd7' }}
+                    />
                     </div>
-                    
-                </div>
-            </div>
-            
+              </div>
+            )}
+          </div>
         </div>
-    );
+      </div>
+    </div>
+  );
 }
 
 export default TopVar;

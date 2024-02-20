@@ -1,3 +1,4 @@
+@import 'colores.css';
 
 .TopBarContainer{
     width: 100%;
@@ -43,6 +44,7 @@
 .TopBarContainer a{
   color: antiquewhite;
   text-decoration: none;
+  
 }
 
 
@@ -53,6 +55,9 @@
   padding: 5px;
   border: none;
   box-shadow: none;
+  background-color: var(--coSecond);
+  color: #faebd7;
+  font-size: 14px;
 }
 
 .SearchBarTop{
@@ -60,15 +65,25 @@
   align-items: center;
 }
 
+
+
 .buscador{
-  display: none;
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  border: 1px solid white;
+  border: 1px solid var(--coSecond);
   border-radius: 5px;
   outline: none;
   box-sizing: border-box;
-  background-color: white;
+  background-color: var(--coSecond);
   margin-left: 5px;
+}
+
+.buscador svg{
+  margin: 5px 10px 0px 0px;
+}
+
+.SearchBoxInput{
+  display: flex;
+  align-items: center;
 }

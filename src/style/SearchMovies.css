@@ -1,0 +1,38 @@
+@import 'colores.css';
+
+.tituloBusqueda{
+    font-size: 30px;
+    text-align: left;
+}
+
+.dropdownItemSearchScreen{
+    color: antiquewhite;
+    border-bottom: 1px solid #3e4651;
+    padding: 10px 10px 10px 10px;
+    display: flex;
+}
+
+.dropdownItemSearchScreen img{
+    object-fit: contain;
+    margin-right: 20px;
+    width: 150px;
+    border-radius: 3%;
+}
+
+.dropdownItemSearchText{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+.filaNombrePelicula {
+    text-align: left;
+    font-size: 40px;
+}
+
+.filaFechaPelicula {
+    font-size: 20px;
+    display: flex;
+    align-items: flex-start;
+}
+

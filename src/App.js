@@ -6,6 +6,7 @@ import TopVar from './components/TopBar';
 import DescriptionMovie from './components/DescriptionMovie';
 import { MovieProvider } from './components/contextos/MovieContext';
 import PopularMovies from './components/PopularMovies';
+import SearchMovies from './components/SearchMovies';
 import {
   BrowserRouter as Router, Routes,
   Route
@@ -31,6 +32,7 @@ function App() {
                     <Route path="/film/:id"
                         element={ <DescriptionMovie/>} />
                     <Route path="/popular" element={ <PopularMovies/>} />
+                    <Route path="/search/:name" element={ <SearchMovies/>} />
                 </Routes>
               </MovieProvider>
           </Router>
