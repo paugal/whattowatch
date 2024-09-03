@@ -1,6 +1,7 @@
 {
   "name": "whattowatch",
   "version": "0.1.0",
+  "homepage": "http://paugal.github.io/whattowatch",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.3",
@@ -28,6 +29,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -50,6 +53,7 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "gh-pages": "^6.1.1",
     "react-scripts": "^5.0.1"
   }
 }
