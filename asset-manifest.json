@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "/whattowatch/static/css/main.caf58906.css",
-    "main.js": "/whattowatch/static/js/main.927b8835.js",
+    "main.js": "/whattowatch/static/js/main.67b71dc2.js",
     "static/js/787.405db79d.chunk.js": "/whattowatch/static/js/787.405db79d.chunk.js",
     "static/media/defaultposter.png": "/whattowatch/static/media/defaultposter.b2c5a96175759479d34b.png",
     "static/media/Rotten_Tomatoes.png": "/whattowatch/static/media/Rotten_Tomatoes.0be661fb3f450f652d8f.png",
     "static/media/MetacriticIcon.png": "/whattowatch/static/media/MetacriticIcon.177e49388ceafbd0d0af.png",
     "index.html": "/whattowatch/index.html",
     "main.caf58906.css.map": "/whattowatch/static/css/main.caf58906.css.map",
-    "main.927b8835.js.map": "/whattowatch/static/js/main.927b8835.js.map",
+    "main.67b71dc2.js.map": "/whattowatch/static/js/main.67b71dc2.js.map",
     "787.405db79d.chunk.js.map": "/whattowatch/static/js/787.405db79d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.caf58906.css",
-    "static/js/main.927b8835.js"
+    "static/js/main.67b71dc2.js"
   ]
 }
