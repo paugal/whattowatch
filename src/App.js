@@ -18,7 +18,7 @@ function App() {
 
   return (
     <div className="App">
-      <Router>
+      <Router basename="/whattowatch">
         <TopVar />
         <div className="centeredDiv">
           <MovieProvider>
