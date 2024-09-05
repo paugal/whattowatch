@@ -1,11 +1,5 @@
 const MyButtonLink = ({ to }) => {
- 
-    return (
-        <a href={`/${to}`}>
-            {to === '' ? "home" : to}
-            
-        </a>
-    )
-}
- 
+  return <link to={`/${to}`}>{to === "" ? "home" : to}</link>;
+};
+
 export default MyButtonLink;

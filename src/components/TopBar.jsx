@@ -4,14 +4,17 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function TopVar() {
   const [isSearching, setIsSearching] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
 
   const handleSearch = () => {
     if (searchQuery != "") {
-      window.location.href = `/search/${searchQuery}`;
+      /* window.location.href = `/search/${searchQuery}`; */
+      navigate(`/search/${searchQuery}`);
     }
   };
 
@@ -34,7 +37,7 @@ function TopVar() {
         <div className="topBarButtons">
           <Link to="/popular">POPULAR</Link>
           <Link to="/watchlist">WATCHLIST</Link>
-          <Link href="/perfil">PERFIL</Link>
+          <Link to="/perfil">PERFIL</Link>
           <div className="SearchBarTop">
             {!isSearching ? (
               <div id="startBuscar" onClick={toggleSearchBar}>
