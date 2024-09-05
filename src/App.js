@@ -7,7 +7,7 @@ import DescriptionMovie from "./components/DescriptionMovie";
 import { MovieProvider } from "./components/contextos/MovieContext";
 import PopularMovies from "./components/PopularMovies";
 import SearchMovies from "./components/SearchMovies";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   const [selectedMovies, setSelectedMovies] = useState([]);
@@ -18,9 +18,9 @@ function App() {
 
   return (
     <div className="App">
-      <TopVar />
-      <div className="centeredDiv">
-        <Router>
+      <Router>
+        <TopVar />
+        <div className="centeredDiv">
           <MovieProvider>
             <Routes>
               <Route
@@ -34,8 +34,8 @@ function App() {
               <Route path="/search/:name" element={<SearchMovies />} />
             </Routes>
           </MovieProvider>
-        </Router>
-      </div>
+        </div>
+      </Router>
     </div>
   );
 }
